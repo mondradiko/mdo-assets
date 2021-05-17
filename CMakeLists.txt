@@ -37,3 +37,8 @@ target_link_libraries (mdo-assets
   ${LIBUV_LIBRARIES}
 )
 
+# tests
+if (ENABLE_TESTS)
+  enable_testing ()
+  add_subdirectory (tests)
+endif ()
