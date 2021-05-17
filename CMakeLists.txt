@@ -19,6 +19,7 @@ include_directories ("${CMAKE_CURRENT_SOURCE_DIR}")
 set (MDO_ASSETS_SRC
   src/allocator.c
   src/asset_ctx.c
+  src/decompressor.c
 )
 
 add_library (mdo-assets STATIC ${MDO_ASSETS_SRC})
