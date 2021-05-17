@@ -13,3 +13,4 @@ function (create_test TEST_NAME TEST_PATH)
 endfunction ()
 
 create_test (asset_ctx asset_ctx.c)
+create_test (decompressors decompressors.c)
