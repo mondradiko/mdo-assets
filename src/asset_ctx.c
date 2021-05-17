@@ -1,11 +1,10 @@
 /*! @file
- @copyright Copyright (c) 2021 Marceline Cramer
- SPDX-License-Identifier: MIT
+  @copyright Copyright (c) 2021 Marceline Cramer
+  SPDX-License-Identifier: MIT
  */
 
 #include "include/asset_ctx.h"
 
-#include "allocator.h"
 #include "asset_ctx.h"
 #include "lump.h"
 

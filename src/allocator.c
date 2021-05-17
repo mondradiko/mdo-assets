@@ -1,6 +1,6 @@
 /*! @file
- @copyright Copyright (c) 2021 Marceline Cramer
- SPDX-License-Identifier: MIT
+  @copyright Copyright (c) 2021 Marceline Cramer
+  SPDX-License-Identifier: MIT
  */
 
 #include "allocator.h"
