@@ -42,7 +42,7 @@ typedef size_t (*mdo_decompressor_decompress_cb) (void *, void *, size_t *,
  */
 typedef void (*mdo_decompressor_finalize_cb) (void *);
 
-/*! @typedef
+/*! @typedef mdo_decompressor_t
   A decompressor implementation. Used to decompress incoming lump data.
  */
 typedef struct mdo_decompressor_s mdo_decompressor_t;
