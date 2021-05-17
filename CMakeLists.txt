@@ -20,6 +20,7 @@ set (MDO_ASSETS_SRC
   src/allocator.c
   src/asset_ctx.c
   src/decompressor.c
+  src/raw_decompressor.c
 )
 
 add_library (mdo-assets STATIC ${MDO_ASSETS_SRC})
