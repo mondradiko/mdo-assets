@@ -5,8 +5,6 @@
 
 #include "include/asset_ctx.h"
 
-#include <uv.h>
-
 struct mdo_asset_ctx_s
 {
   const mdo_allocator_t *alloc;
@@ -14,24 +12,40 @@ struct mdo_asset_ctx_s
 };
 
 int
-mdo_asset_ctx_init (mdo_asset_ctx_t *ctx, const mdo_allocator_t *alloc)
+mdo_asset_ctx_create (mdo_asset_ctx_t **ctx, const mdo_allocator_t *alloc)
 {
   if (!alloc)
     alloc = mdo_default_allocator ();
 
-  ctx->alloc = alloc;
+  mdo_asset_ctx_t *new_ctx
+      = mdo_allocator_malloc (alloc, sizeof (mdo_asset_ctx_t));
+  new_ctx->alloc = alloc;
+  *ctx = new_ctx;
 
-  uv_loop_init (&ctx->loop);
-  uv_loop_configure (&ctx->loop, UV_METRICS_IDLE_TIME);
+  uv_loop_init (&new_ctx->loop);
+  uv_loop_configure (&new_ctx->loop, UV_METRICS_IDLE_TIME);
 
   return 0;
 }
 
 uint64_t
-mdo_asset_ctx_destroy (mdo_asset_ctx_t *ctx)
+mdo_asset_ctx_delete (mdo_asset_ctx_t *ctx)
 {
   uv_run (&ctx->loop, UV_RUN_DEFAULT); /* flush loop */
   uint64_t idle_time = uv_metrics_idle_time (&ctx->loop);
   uv_loop_close (&ctx->loop);
+  mdo_allocator_free (ctx->alloc, ctx);
   return idle_time;
+}
+
+uv_loop_t *
+mdo_asset_ctx_get_loop (mdo_asset_ctx_t *ctx)
+{
+  return &ctx->loop;
+}
+
+const mdo_allocator_t *
+mdo_asset_ctx_get_alloc (const mdo_asset_ctx_t *ctx)
+{
+  return ctx->alloc;
 }

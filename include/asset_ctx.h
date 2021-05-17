@@ -7,9 +7,9 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <uv.h>
 
 #include "allocator.h"
-#include "lump.h"
 
 /** @typedef
   @brief Stores all the state required to load lumps.
@@ -17,16 +17,30 @@
 typedef struct mdo_asset_ctx_s mdo_asset_ctx_t;
 
 /*! @function
-  @brief Initializes an asset_ctx.
-  @param ctx The asset_ctx to initialize.
+  @brief Creates an asset_ctx.
+  @param ctx The asset_ctx to create.
   @param alloc An allocator to use, or NULL for the default.
   @return Zero for success, non-zero otherwise.
  */
-int mdo_asset_ctx_init (mdo_asset_ctx_t *, const mdo_allocator_t *);
+int mdo_asset_ctx_create (mdo_asset_ctx_t **, const mdo_allocator_t *);
 
 /*! @function
-  @brief Destroys an asset_ctx.
-  @param ctx The asset_ctx to destroy.
+  @brief Deletes an asset_ctx.
+  @param ctx The asset_ctx to delete.
   @return The time that the event loop spent in idle, in nanoseconds.
  */
-uint64_t mdo_asset_ctx_destroy (mdo_asset_ctx_t *);
+uint64_t mdo_asset_ctx_delete (mdo_asset_ctx_t *);
+
+/*! @function
+  @brief Retrieves an asset contexts' loop.
+  @param ctx The asset_ctx to retrieve the loop from.
+  @return A handle to a uv_loop_t.
+ */
+uv_loop_t *mdo_asset_ctx_get_loop (mdo_asset_ctx_t *);
+
+/*! @function
+  @brief Retrieves an asset contexts' allocator.
+  @param ctx The asset_ctx to retrieve the allocator from.
+  @return A handle to an mdo_allocator_t.
+*/
+const mdo_allocator_t *mdo_asset_ctx_get_alloc (const mdo_asset_ctx_t *);

@@ -1,10 +1,10 @@
 #include "test_common.h"
 
-#include "src/asset_ctx.c"
+#include "include/asset_ctx.h"
 
-Test (asset_ctx, init_and_destroy)
+Test (asset_ctx, create_and_delete)
 {
-  mdo_asset_ctx_t ctx;
-  cr_assert_eq (0, mdo_asset_ctx_init (&ctx, cr_allocator ()));
-  mdo_asset_ctx_destroy (&ctx);
+  mdo_asset_ctx_t *ctx;
+  cr_assert_eq (0, mdo_asset_ctx_create (&ctx, NULL));
+  mdo_asset_ctx_delete (ctx);
 }
