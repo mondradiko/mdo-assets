@@ -15,3 +15,10 @@ add_compile_options (-Wpedantic)
 # project includes
 include_directories ("${CMAKE_CURRENT_SOURCE_DIR}")
 
+# main library
+set (MDO_ASSETS_SRC
+  src/allocator.c
+)
+
+add_library (mdo-assets STATIC ${MDO_ASSETS_SRC})
+
