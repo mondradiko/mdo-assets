@@ -5,10 +5,13 @@
 
 #include "include/asset_ctx.h"
 
-#include "asset_ctx.h"
-#include "lump.h"
+#include <uv.h>
 
-#include <stdlib.h>
+struct mdo_asset_ctx_s
+{
+  const mdo_allocator_t *alloc;
+  uv_loop_t loop;
+};
 
 int
 mdo_asset_ctx_init (mdo_asset_ctx_t *ctx, const mdo_allocator_t *alloc)

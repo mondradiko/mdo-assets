@@ -1,6 +1,6 @@
 #include "test_common.h"
 
-#include "src/asset_ctx.h"
+#include "src/asset_ctx.c"
 
 Test (asset_ctx, init_and_destroy)
 {
