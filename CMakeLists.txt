@@ -22,3 +22,17 @@ set (MDO_ASSETS_SRC
 
 add_library (mdo-assets STATIC ${MDO_ASSETS_SRC})
 
+# dependencies
+if (NOT PKG_CONFIG_FOUND)
+  include (FindPkgConfig)
+endif ()
+
+if (NOT LIBUV_FOUND)
+  pkg_check_modules (LIBUV libuv>=1.41.0 REQUIRED)
+endif ()
+
+# libraries
+target_link_libraries (mdo-assets
+  ${LIBUV_LIBRARIES}
+)
+
