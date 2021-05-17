@@ -7,10 +7,11 @@
 
 #include <stddef.h>
 
-/* public types */
+/*! @typedef
+  @brief A general-purpose dynamic memory allocator. Different implementations
+  can be used for different use-cases.
+ */
 typedef struct mdo_allocator_s mdo_allocator_t;
-
-/* functions */
 
 /*! @function
   @brief Allocates a block of memory from an allocator.

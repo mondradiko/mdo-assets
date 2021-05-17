@@ -11,10 +11,10 @@
 #include "allocator.h"
 #include "lump.h"
 
-/* internal types */
+/** @typedef
+  @brief Stores all the state required to load lumps.
+ */
 typedef struct mdo_asset_ctx_s mdo_asset_ctx_t;
-
-/* functions */
 
 /*! @function
   @brief Initializes an asset_ctx.
