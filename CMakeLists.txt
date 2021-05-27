@@ -34,9 +34,19 @@ if (NOT LIBUV_FOUND)
   pkg_check_modules (LIBUV libuv>=1.41.0 REQUIRED)
 endif ()
 
+if (NOT LZ4_FOUND)
+  pkg_check_modules (LZ4 liblz4>=1.9 REQUIRED)
+endif ()
+
+if (NOT XXHASH_FOUND)
+  pkg_check_modules (XXHASH libxxhash REQUIRED)
+endif ()
+
 # libraries
 target_link_libraries (mdo-assets
   ${LIBUV_LIBRARIES}
+  ${LZ4_LIBRARIES}
+  ${XXHASH_LIBRARIES}
 )
 
 # tests
