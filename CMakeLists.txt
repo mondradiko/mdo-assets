@@ -20,6 +20,7 @@ set (MDO_ASSETS_SRC
   src/allocator.c
   src/asset_ctx.c
   src/decompressor.c
+  src/lump.c
   src/raw_decompressor.c
 )
 
