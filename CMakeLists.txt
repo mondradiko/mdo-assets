@@ -12,12 +12,8 @@ set (CMAKE_C_STANDARD 99)
 set (CMAKE_C_STANDARD_REQUIRED TRUE)
 add_compile_options (-Wpedantic)
 
-# project includes
-include_directories ("${CMAKE_CURRENT_SOURCE_DIR}")
-
 # main library
 set (MDO_ASSETS_SRC
-  src/allocator.c
   src/asset_ctx.c
   src/decompressor.c
   src/lump.c
@@ -27,6 +23,8 @@ set (MDO_ASSETS_SRC
 add_library (mdo-assets STATIC ${MDO_ASSETS_SRC})
 
 # dependencies
+find_package (mdo-utils REQUIRED)
+
 if (NOT PKG_CONFIG_FOUND)
   include (FindPkgConfig)
 endif ()
@@ -45,6 +43,7 @@ endif ()
 
 # libraries
 target_link_libraries (mdo-assets
+  mondradiko::mdo-utils
   ${LIBUV_LIBRARIES}
   ${LZ4_LIBRARIES}
   ${XXHASH_LIBRARIES}
