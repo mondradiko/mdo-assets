@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <uv.h>
 
-#include "allocator.h"
+#include "mondradiko/allocator.h"
 
 /** @typedef mdo_asset_ctx_t
   @brief Stores all the state required to load lumps.

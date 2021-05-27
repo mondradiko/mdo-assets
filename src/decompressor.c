@@ -3,7 +3,7 @@
   SPDX-License-Identifier: MIT
  */
 
-#include "include/decompressor.h"
+#include "mondradiko/decompressor.h"
 
 struct mdo_decompressor_s
 {

@@ -5,8 +5,8 @@
 
 #include "test_common.h"
 
-#include "include/lump.h"
-#include "include/raw_decompressor.h"
+#include "mondradiko/lump.h"
+#include "mondradiko/raw_decompressor.h"
 
 Test (lump, create_and_delete)
 {

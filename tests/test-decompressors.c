@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "include/raw_decompressor.h"
+#include "mondradiko/raw_decompressor.h"
 
 Test (decompressors, raw_decompressor)
 {

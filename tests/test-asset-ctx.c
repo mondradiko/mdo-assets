@@ -5,7 +5,7 @@
 
 #include "test_common.h"
 
-#include "include/asset_ctx.h"
+#include "mondradiko/asset_ctx.h"
 
 Test (asset_ctx, create_and_delete)
 {

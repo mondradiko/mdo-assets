@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "allocator.h"
+#include "mondradiko/allocator.h"
 
 /* for size_t */
 #include <stddef.h>

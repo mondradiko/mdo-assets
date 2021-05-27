@@ -1,4 +1,4 @@
-#include "include/raw_decompressor.h"
+#include "mondradiko/raw_decompressor.h"
 
 #include <string.h>
 
