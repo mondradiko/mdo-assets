@@ -1,5 +1,8 @@
 include (CTest)
 
+include_directories (${CMAKE_CURRENT_BINARY_DIR})
+configure_file (test_common.h.in ${CMAKE_CURRENT_BINARY_DIR}/test_common.h)
+
 if (NOT CRITERION_FOUND)
   include (FindPkgConfig)
   pkg_check_modules (CRITERION criterion>=2.0)
