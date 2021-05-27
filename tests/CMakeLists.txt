@@ -1,5 +1,7 @@
 include (CTest)
 
+set (TESTS_DATA_PATH "${CMAKE_CURRENT_SOURCE_DIR}/data/")
+
 include_directories (${CMAKE_CURRENT_BINARY_DIR})
 configure_file (test_common.h.in ${CMAKE_CURRENT_BINARY_DIR}/test_common.h)
 

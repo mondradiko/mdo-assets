@@ -2,3 +2,4 @@
 
 #include <criterion/criterion.h>
 
+#define TESTS_DATA_PATH "@TESTS_DATA_PATH@"
