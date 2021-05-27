@@ -1,3 +1,8 @@
+/** @file test-asset-ctx.c
+  @copyright Copyright (c) 2021 Marceline Cramer
+  SPDX-License-Identifier: MIT
+ */
+
 #include "test_common.h"
 
 #include "include/asset_ctx.h"
