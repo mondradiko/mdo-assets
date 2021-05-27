@@ -12,16 +12,6 @@ set (CMAKE_C_STANDARD 99)
 set (CMAKE_C_STANDARD_REQUIRED TRUE)
 add_compile_options (-Wpedantic)
 
-# main library
-set (MDO_ASSETS_SRC
-  src/asset_ctx.c
-  src/decompressor.c
-  src/lump.c
-  src/raw_decompressor.c
-)
-
-add_library (mdo-assets STATIC ${MDO_ASSETS_SRC})
-
 # dependencies
 find_package (mdo-utils REQUIRED)
 
@@ -41,13 +31,26 @@ if (NOT XXHASH_FOUND)
   pkg_check_modules (XXHASH libxxhash REQUIRED)
 endif ()
 
-# libraries
+# main library
+set (MDO_ASSETS_SRC
+  src/asset_ctx.c
+  src/decompressor.c
+  src/lump.c
+  src/raw_decompressor.c
+)
+
+add_library (mdo-assets SHARED ${MDO_ASSETS_SRC})
+
 target_link_libraries (mdo-assets
   mondradiko::mdo-utils
   ${LIBUV_LIBRARIES}
   ${LZ4_LIBRARIES}
   ${XXHASH_LIBRARIES}
 )
+
+# install library
+include (mondradiko_install)
+mondradiko_install (mdo-assets)
 
 # tests
 if (ENABLE_TESTS)
