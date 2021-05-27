@@ -31,10 +31,16 @@ mdo_asset_ctx_create (mdo_asset_ctx_t **ctx, const mdo_allocator_t *alloc)
 uint64_t
 mdo_asset_ctx_delete (mdo_asset_ctx_t *ctx)
 {
+  if (!ctx)
+    return 0;
+
   uv_run (&ctx->loop, UV_RUN_DEFAULT); /* flush loop */
   uint64_t idle_time = uv_metrics_idle_time (&ctx->loop);
   uv_loop_close (&ctx->loop);
-  mdo_allocator_free (ctx->alloc, ctx);
+
+  const mdo_allocator_t *alloc = ctx->alloc;
+  mdo_allocator_free (alloc, ctx);
+
   return idle_time;
 }
 
