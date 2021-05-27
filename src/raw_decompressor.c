@@ -13,6 +13,9 @@ mdo_raw_decompressor_decompress (void *data, void *dst_buf,
                                  size_t *dst_size_ptr, const void *src_buf,
                                  size_t *src_size_ptr)
 {
+  if (*src_size_ptr > *dst_size_ptr)
+    return 0;
+
   memcpy (dst_buf, src_buf, *src_size_ptr);
   *dst_size_ptr = *src_size_ptr;
   return *dst_size_ptr;
