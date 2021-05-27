@@ -19,3 +19,4 @@ endfunction ()
 
 create_test (asset_ctx asset_ctx.c)
 create_test (decompressors decompressors.c)
+create_test (lump lump.c)
