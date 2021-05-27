@@ -1,6 +1,11 @@
+/*! @file raw_decompressor.c
+  @copyright Copyright (c) 2021 Marceline Cramer
+  SPDX-License-Identifier: MIT
+ */
+
 #include "mondradiko/raw_decompressor.h"
 
-#include <string.h>
+#include <string.h> /* for memcpy */
 
 typedef struct mdo_raw_decompressor_s
 {

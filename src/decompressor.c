@@ -1,4 +1,4 @@
-/*! @file
+/*! @file decompressor.c
   @copyright Copyright (c) 2021 Marceline Cramer
   SPDX-License-Identifier: MIT
  */
