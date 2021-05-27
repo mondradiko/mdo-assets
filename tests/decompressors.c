@@ -7,10 +7,11 @@
 
 Test (decompressors, raw_decompressor)
 {
-  mdo_decompressor_t *decompressor;
-  cr_assert_eq (0, mdo_raw_decompressor_create (&decompressor, NULL));
-
   const mdo_allocator_t *alloc = mdo_default_allocator ();
+
+  mdo_decompressor_t *decompressor;
+  int result = mdo_raw_decompressor_create (&decompressor, alloc);
+  cr_assert_eq (0, result);
 
   size_t buf_size = 1024;
   int *src_buf = mdo_allocator_calloc (alloc, sizeof (int), buf_size);
@@ -35,7 +36,8 @@ Test (decompressors, raw_decompressor)
   cr_expect_eq (src_size, buf_size);
 
   /* check buffers for equality */
-  cr_expect_eq (0, memcmp (dst_buf, src_buf, buf_size));
+  int mem_equals = memcmp (dst_buf, src_buf, buf_size);
+  cr_expect_eq (0, mem_equals);
 
   mdo_allocator_free (alloc, src_buf);
   mdo_allocator_free (alloc, dst_buf);
