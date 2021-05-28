@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include <stddef.h>
-#include <stdint.h>
-#include <uv.h>
+#include <stdint.h> /* for uint64_t */
+#include <uv.h>     /* for uv_loop_t */
 
 #include "mondradiko/allocator.h"
+#include "mondradiko/result.h"
 
 /** @typedef mdo_asset_ctx_t
   @brief Stores all the state required to load lumps.
@@ -20,9 +20,10 @@ typedef struct mdo_asset_ctx_s mdo_asset_ctx_t;
   @brief Creates an asset_ctx.
   @param ctx The asset_ctx to create.
   @param alloc An allocator to use, or NULL for the default.
-  @return Zero for success, non-zero otherwise.
+  @return #mdo_result_t.
  */
-int mdo_asset_ctx_create (mdo_asset_ctx_t **, const mdo_allocator_t *);
+mdo_result_t mdo_asset_ctx_create (mdo_asset_ctx_t **,
+                                   const mdo_allocator_t *);
 
 /*! @function mdo_asset_ctx_delete
   @brief Deletes an asset_ctx.

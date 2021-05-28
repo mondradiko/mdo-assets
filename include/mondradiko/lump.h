@@ -9,6 +9,7 @@
 
 #include "mondradiko/asset_ctx.h"
 #include "mondradiko/decompressor.h"
+#include "mondradiko/result.h"
 
 /** @typedef mdo_lump_t
   Asset "lumps" contain a compressed array of assets, and are stored on
@@ -20,19 +21,19 @@ typedef struct mdo_lump_s mdo_lump_t;
   @brief Creates a lump strucure, used to load lump data into memory.
   @param lump The lump to create.
   @param ctx The asset context to use for shared state.
-  @return 0 on success, non-zero otherwise.
+  @return #mdo_result_t.
  */
-int mdo_lump_create (mdo_lump_t **, mdo_asset_ctx_t *);
+mdo_result_t mdo_lump_create (mdo_lump_t **, mdo_asset_ctx_t *);
 
 /*! @function mdo_lump_load_from_file
   Begins loading a lump from a file on disk.
   @param lump The lump to load into.
   @param filename The path to the file to load.
   @param contents_size The expected size of the decompressed lump contents.
-  @return 0 on success, non-zero otherwise.
+  @return #mdo_result_t.
  */
-int mdo_lump_load_from_file (mdo_lump_t *, mdo_decompressor_t *, const char *,
-                             size_t);
+mdo_result_t mdo_lump_load_from_file (mdo_lump_t *, mdo_decompressor_t *,
+                                      const char *, size_t);
 
 /*! @function mdo_lump_load_from_memory
   Begins loading a lump directly from memory.
@@ -40,10 +41,10 @@ int mdo_lump_load_from_file (mdo_lump_t *, mdo_decompressor_t *, const char *,
   @param src_data The memory of the lump.
   @param src_size The size of the source memory.
   @param contents_size The expected size of the decompressed lump contents.
-  @return 0 on success, non-zero otherwise.
+  @return #mdo_result_t.
  */
-int mdo_lump_load_from_memory (mdo_lump_t *, mdo_decompressor_t *, void *,
-                               size_t, size_t);
+mdo_result_t mdo_lump_load_from_memory (mdo_lump_t *, mdo_decompressor_t *,
+                                        void *, size_t, size_t);
 
 /*! @function mdo_lump_flush
   @brief Blocks until a lump is finished loading.

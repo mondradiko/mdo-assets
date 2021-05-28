@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "mondradiko/allocator.h"
+#include <stddef.h> /* for size_t */
 
-/* for size_t */
-#include <stddef.h>
+#include "mondradiko/allocator.h"
+#include "mondradiko/result.h"
 
 /*! @function mdo_decompressor_cb
   Callback to decompress incoming lump data.
@@ -53,11 +53,12 @@ typedef struct mdo_decompressor_s mdo_decompressor_t;
   @param alloc An allocator to use, or NULL for default.
   @param decompress_cb See mdo_decompressor_cb().
   @param finalize_cb See mdo_decompressor_finalize_cb().
-  @return 0 on success, non-zero otherwise.
+  @return #mdo_result_t.
  */
-int mdo_decompressor_create (mdo_decompressor_t **, const mdo_allocator_t *,
-                             void *, mdo_decompressor_decompress_cb,
-                             mdo_decompressor_finalize_cb);
+mdo_result_t mdo_decompressor_create (mdo_decompressor_t **,
+                                      const mdo_allocator_t *, void *,
+                                      mdo_decompressor_decompress_cb,
+                                      mdo_decompressor_finalize_cb);
 
 /*! @function mdo_decompressor_delete
   Deletes a decompressor implementation. Calls the finalize callback to free
