@@ -15,8 +15,8 @@ Test (decompressors, raw_decompressor)
   const mdo_allocator_t *alloc = mdo_default_allocator ();
 
   mdo_decompressor_t *decompressor;
-  int result = mdo_raw_decompressor_create (&decompressor, alloc);
-  cr_assert_eq (0, result);
+  mdo_result_t result = mdo_raw_decompressor_create (&decompressor, alloc);
+  cr_assert (mdo_result_success (result));
 
   size_t buf_size = 1024;
   int *src_buf = mdo_allocator_calloc (alloc, sizeof (int), buf_size);

@@ -13,12 +13,12 @@ Test (lump, create_and_delete)
   const mdo_allocator_t *alloc = mdo_default_allocator ();
 
   mdo_asset_ctx_t *ctx;
-  int result = mdo_asset_ctx_create (&ctx, alloc);
-  cr_assert_eq (0, result);
+  mdo_result_t result = mdo_asset_ctx_create (&ctx, alloc);
+  cr_assert (mdo_result_success (result));
 
   mdo_lump_t *lump;
   result = mdo_lump_create (&lump, ctx);
-  cr_expect_eq (0, result);
+  cr_expect (mdo_result_success (result));
 
   mdo_lump_delete (lump);
   mdo_asset_ctx_delete (ctx);
@@ -35,20 +35,19 @@ Test (lump, load_from_file)
   const mdo_allocator_t *alloc = mdo_default_allocator ();
 
   mdo_asset_ctx_t *ctx;
-  int result = mdo_asset_ctx_create (&ctx, alloc);
-
-  cr_assert_eq (0, result);
+  mdo_result_t result = mdo_asset_ctx_create (&ctx, alloc);
+  cr_assert (mdo_result_success (result));
 
   mdo_decompressor_t *dc;
   result = mdo_raw_decompressor_create (&dc, alloc);
-  cr_expect_eq (0, result);
+  cr_expect (mdo_result_success (result));
 
   mdo_lump_t *lump;
   result = mdo_lump_create (&lump, ctx);
-  cr_expect_eq (0, result);
+  cr_expect (mdo_result_success (result));
 
   result = mdo_lump_load_from_file (lump, dc, LUMP_PATH, 128 * 1024 * 1024);
-  cr_expect_eq (0, result);
+  cr_expect (mdo_result_success (result));
 
   uint64_t hash = mdo_lump_hash (lump);
   cr_log_info ("result hash: %lx", hash);
