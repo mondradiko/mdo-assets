@@ -13,42 +13,36 @@ set (CMAKE_C_STANDARD_REQUIRED TRUE)
 add_compile_options (-Wpedantic)
 
 # dependencies
-find_package (mdo-utils REQUIRED)
+find_package (mdo-utils CONFIG REQUIRED)
+find_package (lz4 CONFIG REQUIRED)
+find_package (xxHash CONFIG REQUIRED)
+find_package (unofficial-libuv CONFIG REQUIRED)
 
-if (NOT PKG_CONFIG_FOUND)
-  include (FindPkgConfig)
-endif ()
-
-if (NOT LIBUV_FOUND)
-  pkg_check_modules (LIBUV libuv>=1.41.0 REQUIRED)
-endif ()
-
-if (NOT LZ4_FOUND)
-  pkg_check_modules (LZ4 liblz4>=1.9 REQUIRED)
-endif ()
-
-if (NOT XXHASH_FOUND)
-  pkg_check_modules (XXHASH libxxhash REQUIRED)
-endif ()
-
-# main library
-set (MDO_ASSETS_SRC
+# compile library
+add_library (mdo-assets-obj OBJECT
   src/asset_ctx.c
   src/decompressor.c
   src/lump.c
   src/raw_decompressor.c
 )
 
-add_library (mdo-assets SHARED ${MDO_ASSETS_SRC})
+target_include_directories (mdo-assets-obj PUBLIC include)
 
-target_link_libraries (mdo-assets
+if (UNIX)
+  target_compile_options (mdo-assets-obj PRIVATE -fPIC)
+endif ()
+
+target_link_libraries (mdo-assets-obj PUBLIC
   mondradiko::mdo-utils
-  ${LIBUV_LIBRARIES}
-  ${LZ4_LIBRARIES}
-  ${XXHASH_LIBRARIES}
+  lz4::lz4
+  xxHash::xxhash
+  unofficial::libuv::libuv
 )
 
-# install library
+# make shared library
+add_library (mdo-assets SHARED $<TARGET_OBJECTS:mdo-assets-obj>)
+
+# install shared library
 include (mondradiko_install)
 mondradiko_install (mdo-assets)
 
