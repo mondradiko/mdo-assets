@@ -10,13 +10,14 @@
 
 #include "mondradiko/raw_decompressor.h"
 
-Test (decompressors, raw_decompressor)
+static void
+test_raw_decompressor (void **state)
 {
   const mdo_allocator_t *alloc = mdo_default_allocator ();
 
   mdo_decompressor_t *decompressor;
   mdo_result_t result = mdo_raw_decompressor_create (&decompressor, alloc);
-  cr_assert (mdo_result_success (result));
+  assert_true (mdo_result_success (result));
 
   size_t buf_size = 1024;
   int *src_buf = mdo_allocator_calloc (alloc, sizeof (int), buf_size);
@@ -33,18 +34,29 @@ Test (decompressors, raw_decompressor)
   size_t read_hint = mdo_decompressor_decompress (
       decompressor, dst_buf, &dst_size, src_buf, &src_size);
 
+  int mem_equals = memcmp (dst_buf, src_buf, buf_size);
+
   /* the raw decompressor should always be able to read more */
-  cr_expect_neq (0, read_hint);
+  assert_true (read_hint);
 
   /* ensure decompressor used all data */
-  cr_expect_eq (dst_size, buf_size);
-  cr_expect_eq (src_size, buf_size);
+  assert_int_equal (dst_size, buf_size);
+  assert_int_equal (src_size, buf_size);
 
   /* check buffers for equality */
-  int mem_equals = memcmp (dst_buf, src_buf, buf_size);
-  cr_expect_eq (0, mem_equals);
+  assert_int_equal (0, mem_equals);
 
   mdo_allocator_free (alloc, src_buf);
   mdo_allocator_free (alloc, dst_buf);
   mdo_decompressor_delete (decompressor);
+}
+
+int
+main (void)
+{
+  const struct CMUnitTest tests[] = {
+    cmocka_unit_test (test_raw_decompressor),
+  };
+
+  return cmocka_run_group_tests (tests, NULL, NULL);
 }

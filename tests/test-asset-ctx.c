@@ -7,11 +7,22 @@
 
 #include "mondradiko/asset_ctx.h"
 
-Test (asset_ctx, create_and_delete)
+static void
+test_create_and_delete (void **state)
 {
   mdo_asset_ctx_t *ctx;
   mdo_result_t result = mdo_asset_ctx_create (&ctx, NULL);
-  cr_assert (mdo_result_success (result));
+  assert_true (mdo_result_success (result));
 
   mdo_asset_ctx_delete (ctx);
+}
+
+int
+main (void)
+{
+  const struct CMUnitTest tests[] = {
+    cmocka_unit_test (test_create_and_delete),
+  };
+
+  return cmocka_run_group_tests (tests, NULL, NULL);
 }
