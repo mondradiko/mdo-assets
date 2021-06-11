@@ -18,33 +18,21 @@ find_package (lz4 CONFIG REQUIRED)
 find_package (xxHash CONFIG REQUIRED)
 find_package (unofficial-libuv CONFIG REQUIRED)
 
-# compile library
-add_library (mdo-assets-obj OBJECT
+# setup library
+include (mondradiko_setup_library)
+mondradiko_setup_library (mdo-assets MDO_ASSETS_OBJ
   src/asset_ctx.c
   src/decompressor.c
   src/lump.c
   src/raw_decompressor.c
 )
 
-target_include_directories (mdo-assets-obj PUBLIC include)
-
-if (UNIX)
-  target_compile_options (mdo-assets-obj PRIVATE -fPIC)
-endif ()
-
-target_link_libraries (mdo-assets-obj PUBLIC
+target_link_libraries (${MDO_ASSETS_OBJ} PUBLIC
   mondradiko::mdo-utils
   lz4::lz4
   xxHash::xxhash
   unofficial::libuv::libuv
 )
-
-# make shared library
-add_library (mdo-assets SHARED $<TARGET_OBJECTS:mdo-assets-obj>)
-
-# install shared library
-include (mondradiko_install)
-mondradiko_install (mdo-assets)
 
 # tests
 if (ENABLE_TESTS)
