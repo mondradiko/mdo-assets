@@ -3,10 +3,7 @@
   SPDX-License-Identifier: MIT
  */
 
-#include "mondradiko/lump.h"
-#include "mondradiko/allocator.h"
-#include "mondradiko/asset_ctx.h"
-#include "mondradiko/decompressor.h"
+#include "lump.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +11,10 @@
 #include <uv.h>
 #include <xxhash.h>
 
-#include "mondradiko/raw_decompressor.h"
+#include "asset_ctx.h"
+#include "decompressor.h"
+#include "mdo-utils/allocator.h"
+#include "raw_decompressor.h"
 
 struct mdo_lump_s
 {

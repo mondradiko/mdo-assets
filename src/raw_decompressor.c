@@ -3,7 +3,7 @@
   SPDX-License-Identifier: MIT
  */
 
-#include "mondradiko/raw_decompressor.h"
+#include "raw_decompressor.h"
 
 #include <string.h> /* for memcpy */
 

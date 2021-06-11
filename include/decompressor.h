@@ -7,8 +7,8 @@
 
 #include <stddef.h> /* for size_t */
 
-#include "mondradiko/allocator.h"
-#include "mondradiko/result.h"
+#include "mdo-utils/allocator.h"
+#include "mdo-utils/result.h"
 
 /*! @function mdo_decompressor_cb
   Callback to decompress incoming lump data.

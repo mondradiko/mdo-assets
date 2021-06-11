@@ -7,9 +7,9 @@
 
 #include <stdint.h> /* for uint64_t */
 
-#include "mondradiko/asset_ctx.h"
-#include "mondradiko/decompressor.h"
-#include "mondradiko/result.h"
+#include "asset_ctx.h"
+#include "decompressor.h"
+#include "mdo-utils/result.h"
 
 /** @typedef mdo_lump_t
   Asset "lumps" contain a compressed array of assets, and are stored on

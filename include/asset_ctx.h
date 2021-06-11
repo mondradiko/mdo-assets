@@ -8,8 +8,8 @@
 #include <stdint.h> /* for uint64_t */
 #include <uv.h>     /* for uv_loop_t */
 
-#include "mondradiko/allocator.h"
-#include "mondradiko/result.h"
+#include "mdo-utils/allocator.h"
+#include "mdo-utils/result.h"
 
 /** @typedef mdo_asset_ctx_t
   @brief Stores all the state required to load lumps.

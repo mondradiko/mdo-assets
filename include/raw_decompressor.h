@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include "mondradiko/allocator.h"
-#include "mondradiko/decompressor.h"
-#include "mondradiko/result.h"
+#include "decompressor.h"
+#include "mdo-utils/allocator.h"
+#include "mdo-utils/result.h"
 
 /*! @function mdo_raw_decompressor_create
   Creates a raw decompressor implementation. The raw decompressor simply copies

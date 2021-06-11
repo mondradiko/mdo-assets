@@ -5,7 +5,7 @@
 
 #include "test_common.h"
 
-#include "mondradiko/asset_ctx.h"
+#include "asset_ctx.h"
 
 static void
 test_create_and_delete (void **state)
